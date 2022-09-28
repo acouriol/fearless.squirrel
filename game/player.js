@@ -50,13 +50,13 @@ Player.prototype.displayInfo = function () {
     jQuery('#'+this.name+' >.life').text(this.life);
 }
 
-Player.prototype.turnRight = function (angle) {
+Player.prototype.turnRight = function (angle) { 
     this.direction += angle;
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), +angle);
 };
 
 Player.prototype.turnLeft = function (angle) {
-    this.direction += angle;
+    this.direction -= angle;
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), angle);
 };
 
