@@ -71,7 +71,6 @@ function Light(name, color, position)
     pointLight.position.x = position.split(',')[0];
     pointLight.position.y = position.split(',')[1];
     pointLight.position.z = position.split(',')[2];
-    pointLight.intensity(20.5);
-
+    
     return pointLight;
 }

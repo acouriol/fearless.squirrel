@@ -62,14 +62,13 @@ function player_collision()
     var y = player1.graphic.position.y + HEIGHT / 2;
 
     if ( x > WIDTH )
-        player1.graphic.position.x -= x - WIDTH;
+        player1.graphic.position.x = x - WIDTH;
     if ( x < 0 )
-        player1.graphic.position.x -= x;
         player1.player_falling();
     if ( y < 0 )
-        player1.graphic.position.y -= y;
+        player1.player_falling();
     if ( y > HEIGHT )
-        player1.graphic.position.y -= y - HEIGHT;
+        player1.graphic.position.y = y - HEIGHT;
 
 }
 
