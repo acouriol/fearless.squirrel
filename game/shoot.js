@@ -19,6 +19,17 @@ function shoot()
         bullet.angle = player1.direction;
         player1.bullets.push(bullet);
         bulletTime1 = clock.getElapsedTime();
+        
+        if (player2.position.x - bulletTime1.position.x < 5 && player2.position.x - bulletTime1.position.x < 5)
+        {
+            this.graphic.position.z = this.graphic.position.z-0.1;
+            //Nettoyage de la div container
+            $("#container").html("");
+            scene.remove(player2.graphic);
+            jQuery('#'+this.name+' >.life').text("Tu as détruit l'ennemi ! Ramasse son cadavre ou rejoue.");
+
+
+        }
     } 
 
     // move bullets
@@ -61,14 +72,22 @@ function player_collision()
     var x = player1.graphic.position.x + WIDTH / 2;
     var y = player1.graphic.position.y + HEIGHT / 2;
 
-    if ( x > WIDTH )
-        player1.graphic.position.x = x - WIDTH;
-    if ( x < 0 )
-        player1.graphic.position.x = 0;
-    if ( y < 0 )
-    player1.graphic.position.y = 0;
-    if ( y > HEIGHT )
-        player1.graphic.position.y = y - HEIGHT;
+    if ( x > WIDTH ){
+        player1.dead();
+        init();
+    }
+    if ( x <  0 ) {
+        player1.dead();
+        init();
+    }
+    if (y < 0 ){
+        player1.dead();
+        init();
+    }
+    if (y > HEIGHT ) {
+        player1.dead();
+        init();
+    }
 
 }
 
@@ -81,7 +100,7 @@ function player_falling()
     var y = player1.graphic.position.y | 0;
     var length = noGround.length;
     var element = null;
-    player1.life--;
+ 
 
     for (var i = 0; i < length; i++) {
         element = noGround[i];
@@ -96,7 +115,10 @@ function player_falling()
             && (y > tileY) 
             && (y < mtileY))
         {
-           player1.dead();
+            if (player1.life == 0)
+            {
+                player1.dead();
+            }
         }
     }
 

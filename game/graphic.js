@@ -24,15 +24,28 @@ function init()
 
     noGround = [];
     ground = new Ground(0xffffff, WIDTH, HEIGHT, 10);
+    scene.add(ground.graphic);
     
-    player1 = new Player("player1", 0xffff00, new THREE.Vector2(50, 0), 0);
+    player1 = new Player("player1", 0xffff00, new THREE.Vector2(35, 60), 0);
     scene.add(player1.graphic);
 
     light1 = new Light("sun", 0xffffff, "0,0,340");
     scene.add(light1);
 
-    player2 = new Player("player2", 0xffff00, new THREE.Vector2(5, 0), 0);
+    
+
+    player2 = new Player("player2", 0xeefee0, new THREE.Vector2(5, 0), 0);
     scene.add(player2.graphic);
+    for (let index = 0; index < WIDTH; index++) {
+        for (let index1 = 0; index1 < HEIGHT; index1++) {
+            index++;
+            player2.position.x = index;
+            player2.position.y = index1;
+            player2.position.z = index-1;
+            
+        }
+        index--;
+    }
 
 }
 
@@ -77,4 +90,12 @@ function Light(name, color, position)
     pointLight.position.z = position.split(',')[2];
 
     return pointLight;
+}
+
+function Enemy()
+{
+    if (player1.position == player2.position)
+    {
+        player1.life--;
+    }
 }
