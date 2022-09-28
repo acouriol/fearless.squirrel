@@ -92,10 +92,3 @@ function Light(name, color, position)
     return pointLight;
 }
 
-function Enemy()
-{
-    if (player1.position == player2.position)
-    {
-        player1.life--;
-    }
-}
